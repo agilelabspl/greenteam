@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green-Team | Specjaliści od maszyn i zieleni</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #16a34a;
+            --primary-dark: #15803d;
+            --primary-light: #22c55e;
+            --secondary: #064e3b;
+            --accent: #84cc16;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #16a34a 0%, #84cc16 100%);
+            --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --serwis-color: #dc2626;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo span {
+            color: var(--gray);
+            -webkit-text-fill-color: var(--gray);
+            font-weight: 400;
+            font-size: 0.9rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a.serwis-link {
+            color: var(--serwis-color);
+            font-weight: 700;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--gradient);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(22, 163, 74, 0.3);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #f0fdf4 100%);
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(22, 163, 74, 0.08) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--primary);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .hero h1 .highlight {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text {
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+            max-width: 540px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 10px 30px rgba(22, 163, 74, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(22, 163, 74, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--dark);
+            border: 2px solid #e2e8f0;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 500px;
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-card.card-1 {
+            top: 10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .floating-card.card-2 {
+            bottom: 20%;
+            right: -5%;
+            animation-delay: 2s;
+        }
+
+        .floating-card.card-3 {
+            bottom: 5%;
+            left: 10%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .floating-card .icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .floating-card .label {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .floating-card .value {
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        /* Stats */
+        .stats {
+            background: var(--dark);
+            padding: 4rem 2rem;
+        }
+
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: #94a3b8;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 8rem 2rem;
+            background: var(--light);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: rgba(22, 163, 74, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .products-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+        }
+
+        .product-image {
+            height: 220px;
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-card:hover .product-image::after {
+            opacity: 0.1;
+        }
+
+        .product-content {
+            padding: 2rem;
+        }
+
+        .product-category {
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .product-description {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .product-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-tag {
+            background: #f1f5f9;
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .product-cta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: gap 0.3s ease;
+        }
+
+        .product-cta:hover {
+            gap: 1rem;
+        }
+
+        /* Brands Section */
+        .brands {
+            padding: 8rem 2rem;
+            background: white;
+        }
+
+        .brands-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .brand-card {
+            background: var(--light);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+
+        .brand-card:hover {
+            background: white;
+            border-color: var(--primary);
+            transform: scale(1.02);
+            box-shadow: var(--shadow);
+        }
+
+        .brand-logo {
+            height: 80px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brand-logo img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .brand-desc {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* SERWIS Section - Highlighted */
+        .serwis {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .serwis::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .serwis-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .serwis-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .serwis-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .serwis-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .serwis-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .serwis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .serwis-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .serwis-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .serwis-card p {
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        .serwis-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .serwis-card ul li {
+            padding: 0.3rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .serwis-card ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #fbbf24;
+        }
+
+        .serwis-contact {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .serwis-contact h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .serwis-phones {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .serwis-phones a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .serwis-phones a:hover {
+            background: white;
+            color: var(--serwis-color);
+        }
+
+        .serwis-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            opacity: 0.9;
+        }
+
+        .serwis-info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--dark) 100%);
+            color: white;
+        }
+
+        .services .section-tag {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--accent);
+        }
+
+        .services .section-title {
+            color: white;
+        }
+
+        .services .section-subtitle {
+            color: #94a3b8;
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .service-icon img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .service-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .service-desc {
+            color: #94a3b8;
+            line-height: 1.7;
+        }
+
+        /* Why Us Section */
+        .why-us {
+            padding: 8rem 2rem;
+            background: var(--light);
+        }
+
+        .why-us-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .why-us-content h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .why-us-content p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .benefits-list {
+            list-style: none;
+        }
+
+        .benefits-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .benefit-icon {
+            width: 28px;
+            height: 28px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: white;
+            font-size: 0.8rem;
+        }
+
+        .benefit-text h4 {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .benefit-text p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .why-us-visual {
+            position: relative;
+        }
+
+        .why-us-image {
+            width: 100%;
+            height: 600px;
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .why-us-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 8rem 2rem;
+            background: white;
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--gradient);
+            border-radius: 40px;
+            padding: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .cta h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .cta p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .cta .btn {
+            background: white;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .cta .btn:hover {
+            background: var(--dark);
+            color: white;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 2rem;
+            background: var(--light);
+        }
+
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .contact-text h4 {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-text p {
+            color: var(--gray);
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .contact-text a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .contact-form .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 5rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand .logo {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .footer-brand p {
+            color: #94a3b8;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+        }
+
+        .footer-column h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-column a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text {
+                margin: 0 auto 2.5rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .brands-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-us-container {
+                grid-template-columns: 1fr;
+            }
+
+            .why-us-visual {
+                order: -1;
+            }
+
+            .why-us-image {
+                height: 400px;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero {
+                padding-top: 100px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .brands-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-container {
+                padding: 3rem 2rem;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .serwis-phones {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .serwis-info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="logo"><img src="img/GTlogo.png" alt="Green-Team" style="height: 50px;"></a>
+            <ul class="nav-links">
+                <li><a href="#produkty">Sztuczna trawa</a></li>
+                <li><a href="#pielegnacja">Pielęgnacja trawy</a></li>
+                <li><a href="#marki">Marki</a></li>
+                <li><a href="#serwis" class="serwis-link">SERWIS</a></li>
+                <li><a href="#uslugi">Usługi</a></li>
+                <li><a href="#rekomendacje">Rekomendacje</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+            <a href="tel:422145050" class="nav-cta">Zadzwoń: 42 214 50 50</a>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">Specjaliści od maszyn i zieleni</div>
+                <h1>Profesjonalny sprzęt do <span class="highlight">pielęgnacji trawników</span> i boisk</h1>
+                <p class="hero-text">Oferujemy najwyższej jakości maszyny do pielęgnacji terenów zielonych oraz sztucznej trawy. Sprzedaż, serwis i profesjonalne doradztwo.</p>
+                <div class="hero-buttons">
+                    <a href="#produkty" class="btn btn-primary">Zobacz ofertę &rarr;</a>
+                    <a href="#kontakt" class="btn btn-secondary">Skontaktuj się</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="img/honda-dealer.png" alt="Autoryzowany dealer Honda" style="position: absolute; top: -30px; right: -30px; height: 180px; z-index: 20; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));">
+                <div class="hero-image">
+                    <img src="img/cropped-Honda-1.jpeg" alt="Boisko ze sztuczną nawierzchnią">
+                </div>
+                <div class="floating-card card-1">
+                    <div class="label">Zadowolonych klientów</div>
+                    <div class="value">500+</div>
+                </div>
+                <div class="floating-card card-2">
+                    <div class="label">Lat doświadczenia</div>
+                    <div class="value">15+</div>
+                </div>
+                <div class="floating-card card-3">
+                    <div class="label">Serwis gwarancyjny</div>
+                    <div class="value">24/7</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Zadowolonych klientów</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Lat na rynku</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Modeli maszyn</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Profesjonalny serwis</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="produkty">
+        <div class="section-header">
+            <span class="section-tag">Nasza oferta</span>
+            <h2 class="section-title">Sprzęt do sztucznej trawy</h2>
+            <p class="section-subtitle">Intensywnie używane boisko ze sztuczną nawierzchnią wymaga regularnej pielęgnacji. Oferujemy kompletne rozwiązania.</p>
+        </div>
+        <div class="products-grid">
+            <!-- 1. Profesjonalne maszyny do pielęgnacji boisk -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="img/sportchamp.jpg" alt="SportChamp - profesjonalna maszyna do pielęgnacji boisk">
+                </div>
+                <div class="product-content">
+                    <span class="product-category">Kompleksowa pielęgnacja</span>
+                    <h3 class="product-title">Profesjonalne maszyny do pielęgnacji boisk</h3>
+                    <p class="product-description">Wielofunkcyjne maszyny SMG SportChamp do kompleksowej pielęgnacji boisk ze sztuczną nawierzchnią. Szczotkowanie, czyszczenie i wyrównywanie granulatu w jednym przejeździe.</p>
+                    <div class="product-features">
+                        <span class="feature-tag">SMG SportChamp</span>
+                        <span class="feature-tag">Wielofunkcyjne</span>
+                        <span class="feature-tag">Profesjonalne</span>
+                    </div>
+                    <a href="#kontakt" class="product-cta">Zapytaj o cenę &rarr;</a>
+                </div>
+            </div>
+            <!-- 2. Zgrzebła do sztucznej trawy -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="img/zgrzeblo2.png" alt="Zgrzebło do sztucznej trawy">
+                </div>
+                <div class="product-content">
+                    <span class="product-category">Pielęgnacja trawy</span>
+                    <h3 class="product-title">Zgrzebła do sztucznej trawy</h3>
+                    <p class="product-description">Profesjonalne zgrzebła do podnoszenia i pionizacji włókien sztucznej trawy. Skutecznie usuwają zagęszczony granulat i przywracają sprężystość nawierzchni.</p>
+                    <div class="product-features">
+                        <span class="feature-tag">Pionizacja włókien</span>
+                        <span class="feature-tag">Rozluźnianie granulatu</span>
+                    </div>
+                    <a href="#kontakt" class="product-cta">Zapytaj o cenę &rarr;</a>
+                </div>
+            </div>
+            <!-- 3. Zamiatarki -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="img/zamiatarka2.jpeg" alt="Zamiatarka do boisk">
+                </div>
+                <div class="product-content">
+                    <span class="product-category">Czyszczenie</span>
+                    <h3 class="product-title">Zamiatarki</h3>
+                    <p class="product-description">Wydajne zamiatarki do czyszczenia boisk i orlików ze sztuczną nawierzchnią. Skutecznie usuwają liście, zanieczyszczenia i drobne odpady.</p>
+                    <div class="product-features">
+                        <span class="feature-tag">Czyszczenie nawierzchni</span>
+                        <span class="feature-tag">Wysoka wydajność</span>
+                    </div>
+                    <a href="#kontakt" class="product-cta">Zapytaj o cenę &rarr;</a>
+                </div>
+            </div>
+            <!-- 4. Kompaktowa maszyna do pielęgnacji -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="img/turfboy.jpeg" alt="TurfBoy - kompaktowa maszyna do pielęgnacji">
+                </div>
+                <div class="product-content">
+                    <span class="product-category">Kompaktowe rozwiązanie</span>
+                    <h3 class="product-title">Kompaktowa maszyna do pielęgnacji</h3>
+                    <p class="product-description">SMG TurfBoy – zwrotna i kompaktowa maszyna idealna do mniejszych boisk i orlików. Łączy funkcje szczotkowania, czyszczenia i wyrównywania granulatu.</p>
+                    <div class="product-features">
+                        <span class="feature-tag">SMG TurfBoy</span>
+                        <span class="feature-tag">Kompaktowa</span>
+                        <span class="feature-tag">Wielofunkcyjna</span>
+                    </div>
+                    <a href="#kontakt" class="product-cta">Zapytaj o cenę &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pielęgnacja trawy Section -->
+    <section class="products" id="pielegnacja" style="background: white;">
+        <div class="section-header">
+            <span class="section-tag">Nasza oferta</span>
+            <h2 class="section-title">Pielęgnacja trawy</h2>
+            <p class="section-subtitle">Profesjonalny sprzęt do pielęgnacji trawników naturalnych. Kosiarki, traktorki i akcesoria renomowanych marek.</p>
+        </div>
+        <div class="products-grid">
+            <!-- 1. Kosiarki Honda -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="img/hondahosiarka.png" alt="Kosiarki Honda">
+                </div>
+                <div class="product-content">
+                    <span class="product-category">Honda</span>
+                    <h3 class="product-title">Kosiarki Honda</h3>
+                    <p class="product-description">Niezawodne kosiarki spalinowe Honda. Japońska jakość, trwałość i doskonałe parametry koszenia dla wymagających użytkowników.</p>
+                    <div class="product-features">
+                        <span class="feature-tag">Spalinowe</span>
+                        <span class="feature-tag">Niezawodne</span>
+                        <span class="feature-tag">Japońska jakość</span>
+                    </div>
+                    <a href="#kontakt" class="product-cta">Zapytaj o cenę &rarr;</a>
+                </div>
+            </div>
+            <!-- 2. Traktorki Cub Cadet -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="img/traktorekcubcadet.webp" alt="Traktorki Cub Cadet">
+                </div>
+                <div class="product-content">
+                    <span class="product-category">Cub Cadet</span>
+                    <h3 class="product-title">Traktorki Cub Cadet</h3>
+                    <p class="product-description">Profesjonalne traktorki ogrodowe Cub Cadet do dużych powierzchni. Komfort, moc i precyzja koszenia.</p>
+                    <div class="product-features">
+                        <span class="feature-tag">Duże powierzchnie</span>
+                        <span class="feature-tag">Komfort pracy</span>
+                    </div>
+                    <a href="#kontakt" class="product-cta">Zapytaj o cenę &rarr;</a>
+                </div>
+            </div>
+            <!-- 3. Agregat prądotwórczy -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="img/agregathonda.jpeg" alt="Agregat prądotwórczy Honda">
+                </div>
+                <div class="product-content">
+                    <span class="product-category">Honda</span>
+                    <h3 class="product-title">Agregat prądotwórczy</h3>
+                    <p class="product-description">Agregaty prądotwórcze Honda – niezawodne źródło energii w każdych warunkach. Ciche, ekonomiczne i trwałe.</p>
+                    <div class="product-features">
+                        <span class="feature-tag">Niezawodne</span>
+                        <span class="feature-tag">Ciche</span>
+                        <span class="feature-tag">Ekonomiczne</span>
+                    </div>
+                    <a href="#kontakt" class="product-cta">Zapytaj o cenę &rarr;</a>
+                </div>
+            </div>
+            <!-- 4. Sprzęt do pielęgnacji -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="img/sprzethonda.png" alt="Sprzęt do pielęgnacji Honda">
+                </div>
+                <div class="product-content">
+                    <span class="product-category">Honda</span>
+                    <h3 class="product-title">Sprzęt do pielęgnacji</h3>
+                    <p class="product-description">Kompletny asortyment sprzętu Honda: dmuchawy, nożyce, glebogryzarki, odśnieżarki i kosy spalinowe.</p>
+                    <div class="product-features">
+                        <span class="feature-tag">Dmuchawy</span>
+                        <span class="feature-tag">Nożyce</span>
+                        <span class="feature-tag">Glebogryzarki</span>
+                        <span class="feature-tag">Odśnieżarki</span>
+                        <span class="feature-tag">Kosy</span>
+                    </div>
+                    <a href="#kontakt" class="product-cta">Zapytaj o cenę &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section class="brands" id="marki">
+        <div class="section-header">
+            <span class="section-tag">Zaufane marki</span>
+            <h2 class="section-title">Współpracujemy z najlepszymi</h2>
+            <p class="section-subtitle">Oferujemy sprzęt renomowanych producentów, którzy gwarantują najwyższą jakość i niezawodność.</p>
+        </div>
+        <div class="brands-grid">
+            <div class="brand-card">
+                <div class="brand-logo">
+                    <img src="img/Logo_Honda.jpg" alt="Honda">
+                </div>
+                <h3 class="brand-name">Honda</h3>
+                <p class="brand-desc">Kosiarki spalinowe, traktorki i kosy. Znane od lat z trwałości i niezawodności. Gwarancja jakości.</p>
+            </div>
+            <div class="brand-card">
+                <div class="brand-logo">
+                    <img src="img/gf-logo.png" alt="Gianni Ferrari">
+                </div>
+                <h3 class="brand-name">Gianni Ferrari</h3>
+                <p class="brand-desc">Profesjonalne maszyny do pielęgnacji murawy. Modele GTM, GTS, PG. Włoska precyzja.</p>
+            </div>
+            <div class="brand-card">
+                <div class="brand-logo">
+                    <img src="img/smg-logo.svg" alt="SMG">
+                </div>
+                <h3 class="brand-name">SMG</h3>
+                <p class="brand-desc">Specjalistyczny sprzęt: Turfsoft, Turfboy, CareMax, SportChamp. Do najtrudniejszych zadań.</p>
+            </div>
+            <div class="brand-card">
+                <div class="brand-logo">
+                    <img src="img/cub.png" alt="Cub Cadet" style="max-height: 60px;">
+                    <img src="img/mtd-logo.png" alt="MTD" style="max-height: 40px; margin-left: 10px;">
+                </div>
+                <h3 class="brand-name">MTD / Cub Cadet</h3>
+                <p class="brand-desc">Niezawodny sprzęt ogrodniczy. Traktorki i maszyny do profesjonalnej pielęgnacji terenów zielonych.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERWIS Section - Highlighted -->
+    <section class="serwis" id="serwis">
+        <div class="serwis-container">
+            <div class="serwis-header">
+                <span class="serwis-tag">SERWIS</span>
+                <h2 class="serwis-title">Profesjonalny serwis sprzętu ogrodniczego</h2>
+                <p class="serwis-subtitle">Wszystkie proponowane przez nas maszyny są niezawodne, ale gdyby jednak coś się stało – zapewniamy szybką i sprawną obsługę serwisową.</p>
+            </div>
+            <div class="serwis-grid">
+                <div class="serwis-card">
+                    <h3>Naprawy gwarancyjne</h3>
+                    <p>Wykonujemy naprawy gwarancyjne sprzętu ogrodniczego następujących marek:</p>
+                    <ul>
+                        <li>Honda</li>
+                        <li>MTD</li>
+                        <li>CUB CADET</li>
+                        <li>NAC</li>
+                        <li>Hortmasz</li>
+                        <li>Krysiak</li>
+                    </ul>
+                </div>
+                <div class="serwis-card">
+                    <h3>Naprawy pogwarancyjne</h3>
+                    <p>Świadczymy kompleksowe usługi napraw pogwarancyjnych większości urządzeń ogrodniczych.</p>
+                    <ul>
+                        <li>Kosiarki spalinowe</li>
+                        <li>Traktorki ogrodowe</li>
+                        <li>Kosy i podkaszarki</li>
+                        <li>Sprzęt do sztucznej trawy</li>
+                    </ul>
+                </div>
+                <div class="serwis-card">
+                    <h3>Oficjalny serwis SMG</h3>
+                    <p>Jesteśmy <strong>oficjalnym serwisem maszyn do pielęgnacji sztucznej trawy firmy SMG</strong>.</p>
+                    <ul>
+                        <li>Turfsoft TS2, TS3</li>
+                        <li>Turfboy TB2</li>
+                        <li>CareMax CM2</li>
+                        <li>SportChamp SC</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="serwis-contact">
+                <h3>Zadzwoń do serwisu</h3>
+                <div class="serwis-phones">
+                    <a href="tel:422145050">42 214 50 50</a>
+                    <a href="tel:789286060">789 28 60 60</a>
+                </div>
+                <div class="serwis-info">
+                    <div class="serwis-info-item">
+                        <strong>Godziny:</strong> Pon – Pt: 10:00 – 17:00 | Sobota: 10:00 – 14:00 | Soboty w sezonie zimowym: nieczynne
+                    </div>
+                    <div class="serwis-info-item">
+                        <strong>Adres:</strong> ul. Warszawska 170, 95-200 Pabianice
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="uslugi">
+        <div class="section-header">
+            <span class="section-tag">Nasze usługi</span>
+            <h2 class="section-title">Kompleksowa obsługa</h2>
+            <p class="section-subtitle">Nie tylko sprzedajemy – zapewniamy pełny serwis i wsparcie techniczne.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon" style="font-size: 2rem;">&#128722;</div>
+                <h3 class="service-title">Sprzedaż sprzętu</h3>
+                <p class="service-desc">Szeroki wybór maszyn do pielęgnacji trawników i sztucznej trawy. Profesjonalne doradztwo przy wyborze odpowiedniego sprzętu.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon" style="font-size: 2rem;">&#128295;</div>
+                <h3 class="service-title">Serwis i naprawy</h3>
+                <p class="service-desc">Profesjonalny serwis gwarancyjny i pogwarancyjny. Szybkie naprawy, oryginalne części zamienne, doświadczeni technicy.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon" style="font-size: 2rem;">&#128218;</div>
+                <h3 class="service-title">Doradztwo techniczne</h3>
+                <p class="service-desc">Pomagamy dobrać odpowiedni sprzęt do Twoich potrzeb. Konsultacje dotyczące pielęgnacji terenów zielonych i boisk sportowych.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us Section -->
+    <section class="why-us" id="dlaczego-my">
+        <div class="why-us-container">
+            <div class="why-us-content">
+                <h2>Dlaczego warto wybrać Green-Team?</h2>
+                <p>Od lat pomagamy naszym klientom w profesjonalnej pielęgnacji terenów zielonych i boisk sportowych. Nasza wiedza i doświadczenie to gwarancja najlepszych rozwiązań.</p>
+                <ul class="benefits-list">
+                    <li>
+                        <div class="benefit-icon">&#10003;</div>
+                        <div class="benefit-text">
+                            <h4>Doświadczenie i wiedza</h4>
+                            <p>Ponad 15 lat na rynku. Znamy się na rzeczy i doradzimy najlepsze rozwiązania.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="benefit-icon">&#10003;</div>
+                        <div class="benefit-text">
+                            <h4>Profesjonalny serwis</h4>
+                            <p>Własny zakład serwisowy z wykwalifikowaną kadrą. Szybko i skutecznie.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="benefit-icon">&#10003;</div>
+                        <div class="benefit-text">
+                            <h4>Oryginalne części</h4>
+                            <p>Tylko oryginalne części zamienne. Gwarancja bezpieczeństwa i trwałości.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="benefit-icon">&#10003;</div>
+                        <div class="benefit-text">
+                            <h4>Sprawdzone marki</h4>
+                            <p>Współpracujemy tylko z renomowanymi producentami: Honda, Gianni Ferrari, SMG.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="why-us-visual">
+                <div class="why-us-image">
+                    <img src="img/cropped-Honda-1.jpeg" alt="Profesjonalna pielęgnacja boisk">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-container">
+            <h2>Gotowy na profesjonalną pielęgnację?</h2>
+            <p>Skontaktuj się z nami już dziś i dowiedz się, jak możemy Ci pomóc.</p>
+            <a href="tel:422145050" class="btn btn-primary">Zadzwoń teraz: 42 214 50 50</a>
+        </div>
+    </section>
+
+    <!-- Rekomendacje Section -->
+    <section class="rekomendacje" id="rekomendacje" style="padding: 6rem 2rem; background: var(--light);">
+        <div style="max-width: 1400px; margin: 0 auto; text-align: center;">
+            <div class="section-header">
+                <span class="section-tag">Rekomendacje</span>
+                <h2 class="section-title">Dostarczony przez nas sprzęt pracuje w wielu domach, firmach i miastach</h2>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 3rem;">
+                <img src="img/herby-53-11.jpg" alt="Rekomendacja" style="max-height: 200px; border-radius: 12px; box-shadow: var(--shadow-sm);">
+                <img src="img/herby-53-2.jpg" alt="Rekomendacja" style="max-height: 200px; border-radius: 12px; box-shadow: var(--shadow-sm);">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="kontakt">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Skontaktuj się z nami</h2>
+                <p>Masz pytania dotyczące naszej oferty? Potrzebujesz pomocy w wyborze odpowiedniego sprzętu? Jesteśmy do Twojej dyspozycji!</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">&#128222;</div>
+                        <div class="contact-text">
+                            <h4>Telefon</h4>
+                            <a href="tel:422145050">42 214 50 50</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">&#128231;</div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <a href="mailto:biuro@green-team.info">biuro@green-team.info</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">&#128205;</div>
+                        <div class="contact-text">
+                            <h4>Adres</h4>
+                            <a href="https://maps.google.com/?q=ul.+Warszawska+170,+95-200+Pabianice" target="_blank">ul. Warszawska 170, 95-200 Pabianice</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-hours-map">
+                <div class="hours-box" style="background: white; padding: 2rem; border-radius: 20px; box-shadow: var(--shadow-sm); margin-bottom: 2rem;">
+                    <h3 style="font-size: 1.5rem; font-weight: 700; color: var(--dark); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <span style="font-size: 1.5rem;">&#128337;</span> Godziny otwarcia
+                    </h3>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--light); border-radius: 12px;">
+                            <span style="font-weight: 600; color: var(--dark);">Poniedziałek – Piątek</span>
+                            <span style="font-weight: 700; color: var(--primary); font-size: 1.1rem;">10:00 – 17:00</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--light); border-radius: 12px;">
+                            <span style="font-weight: 600; color: var(--dark);">Sobota</span>
+                            <span style="font-weight: 700; color: var(--primary); font-size: 1.1rem;">10:00 – 14:00</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #fef2f2; border-radius: 12px; border: 1px solid #fecaca;">
+                            <span style="font-weight: 600; color: var(--dark);">Soboty w sezonie zimowym</span>
+                            <span style="font-weight: 700; color: #dc2626; font-size: 1.1rem;">nieczynne</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-box" style="background: white; padding: 1.5rem; border-radius: 20px; box-shadow: var(--shadow-sm);">
+                    <h3 style="font-size: 1.5rem; font-weight: 700; color: var(--dark); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <span style="font-size: 1.5rem;">&#128205;</span> Dojazd
+                    </h3>
+                    <div style="border-radius: 16px; overflow: hidden;">
+                        <img src="img/map.jpg" alt="Mapa dojazdu - ul. Warszawska 170, 95-200 Pabianice" style="width: 100%; height: auto; display: block;">
+                    </div>
+                    <p style="margin-top: 1rem; color: var(--gray); text-align: center;">ul. Warszawska 170, 95-200 Pabianice</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="img/GTlogo.png" alt="Green-Team" class="footer-logo" style="height: 50px; margin-bottom: 1rem;">
+                <p>Specjaliści od maszyn i zieleni. Sprzedaż i serwis kosiarek spalinowych oraz sprzętu do sztucznej trawy. Zaufaj profesjonalistom.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Produkty</h4>
+                <ul>
+                    <li><a href="#produkty">Sztuczna trawa</a></li>
+                    <li><a href="#produkty">Zgrzebła</a></li>
+                    <li><a href="#produkty">Zamiatarki</a></li>
+                    <li><a href="#produkty">Rozrzutniki</a></li>
+                    <li><a href="#produkty">Kosiarki</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Marki</h4>
+                <ul>
+                    <li><a href="#marki">Honda</a></li>
+                    <li><a href="#marki">Gianni Ferrari</a></li>
+                    <li><a href="#marki">SMG</a></li>
+                    <li><a href="#marki">Cub Cadet</a></li>
+                    <li><a href="#marki">MTD</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Firma</h4>
+                <ul>
+                    <li><a href="#dlaczego-my">O nas</a></li>
+                    <li><a href="#serwis">Serwis</a></li>
+                    <li><a href="#uslugi">Usługi</a></li>
+                    <li><a href="#kontakt">Kontakt</a></li>
+                    <li><a href="#">Polityka prywatności</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Green-Team by Morsal. Wszelkie prawa zastrzeżone.</p>
+            <p>Wykonanie strony: Claude AI</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.product-card, .brand-card, .service-card, .serwis-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+    </script>
+</body>
+</html>
