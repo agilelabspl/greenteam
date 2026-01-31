@@ -1,0 +1,91 @@
+{
+  "firma": {
+    "nazwa": "Green-Team",
+    "tagline": "Specjalisci od maszyn i zieleni: sprzedaz i serwis kosiarki spalinowe, sprzet do sztucznej trawy",
+    "telefon": "42 214 50 50",
+    "email": "biuro@green-team.info",
+    "www": "https://green-team.info"
+  },
+  "logo": {
+    "plik": "cropped-cropped-cropped-cropped-cropped-green-team-logo-2.png",
+    "opis": "Logo firmy Green-Team"
+  },
+  "mapa": {
+    "plik": "mapa-greenteam.jpg",
+    "opis": "Mapa lokalizacji firmy Green-Team"
+  },
+  "produkty": [
+    {
+      "kategoria": "Sztuczna trawa",
+      "nazwa": "Zgrzeblo do sztucznej trawy",
+      "plik": "zgrzeblo-pl-300x225.jpg",
+      "opis": "Profesjonalne zgrzeblo do pielegnacji sztucznej trawy",
+      "parametry": {
+        "szerokosc_robocza": "118 cm"
+      },
+      "funkcje": [
+        "Podnoszenie i pionizacja wlokien trawy",
+        "Usuniecie ubicia granulatu (regulacja glebokosci pracy)",
+        "Listwa wyrownujaca poziom granulatu",
+        "Szczotka koncowa zaczesujaca i wygladzajaca powierzchnie"
+      ]
+    },
+    {
+      "kategoria": "Honda - Kosiarki spalinowe",
+      "nazwa": "Kosiarka Honda HRX537",
+      "plik": "hrx537-vk-1024x768.jpg",
+      "opis": "Kosiarka spalinowa Honda HRX537 - znana od lat z trwalosci i niezawodnosci. Idealna do profesjonalnej pielegnacji trawnikow.",
+      "marka": "Honda"
+    },
+    {
+      "kategoria": "Honda - Kosiarki spalinowe",
+      "nazwa": "Kosiarka Honda HRN-536",
+      "plik": "hrn-536.png",
+      "opis": "Kosiarka spalinowa Honda HRN-536 - niezawodna i trwala maszyna do koszenia trawnikow.",
+      "marka": "Honda"
+    },
+    {
+      "kategoria": "Traktorki ogrodowe",
+      "nazwa": "Traktorek ogrodowy",
+      "plik": "xt1or-1024x609.png",
+      "opis": "Traktorek ogrodowy do duzych powierzchni zielonych. Profesjonalna maszyna do pielegnacji terenow zielonych.",
+      "marki": ["Honda", "Cub Cadet", "MTD"]
+    },
+    {
+      "kategoria": "Boiska",
+      "nazwa": "Boisko ze sztuczna nawierzchnia",
+      "plik": "cropped-Honda-1.jpeg",
+      "opis": "Intensywnie uzywane boisko ze sztuczna nawierzchnia wymaga pielegnacji. Oferujemy idealne urzadzenia do biezacych zabiegow.",
+      "zastosowanie": "Czyszczenie i pielegnacja boisk sportowych"
+    }
+  ],
+  "marki": [
+    {
+      "nazwa": "Honda",
+      "logo": "honda.png",
+      "logo_duze": "Logo_Honda_Power_Equipment-1024x218.jpg",
+      "opis": "Kosiarki spalinowe, traktorki i kosy. Znane od lat z trwalosci i niezawodnosci.",
+      "produkty": ["Kosiarki spalinowe", "Traktorki", "Kosy", "Inne urzadzenia", "Zestaw do sztucznej trawy"]
+    },
+    {
+      "nazwa": "Cub Cadet",
+      "logo": "cub.png",
+      "opis": "Niezawodny sprzet ogrodniczy. Traktorki i maszyny do profesjonalnej pielegnacji terenow zielonych."
+    },
+    {
+      "nazwa": "MTD",
+      "logo": "mtd.png",
+      "opis": "Niezawodny sprzet ogrodniczy. Traktorki i maszyny do profesjonalnej pielegnacji terenow zielonych."
+    }
+  ],
+  "referencje": [
+    {
+      "plik": "herby-53-11.jpg",
+      "opis": "Herb - referencja od klienta"
+    },
+    {
+      "plik": "herby-53-2.jpg",
+      "opis": "Herb - referencja od klienta"
+    }
+  ]
+}
