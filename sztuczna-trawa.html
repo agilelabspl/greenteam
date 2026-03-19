@@ -1096,5 +1096,35 @@
             });
         });
     </script>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookieConsent" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#0f172a; color:#fff; padding:0.75rem 1.5rem; font-size:0.85rem; z-index:9999; box-shadow:0 -2px 8px rgba(0,0,0,0.2); align-items:center; justify-content:center; gap:1rem; flex-wrap:wrap;">
+        <span>Ta strona używa plików cookies w celach analitycznych (Google Analytics).</span>
+        <button onclick="acceptCookies()" style="background:#16a34a; color:#fff; border:none; padding:0.4rem 1.2rem; border-radius:6px; cursor:pointer; font-size:0.85rem; font-weight:600; white-space:nowrap;">OK, rozumiem</button>
+    </div>
+    <script>
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookieConsent').style.display = 'none';
+            loadGA();
+        }
+        function loadGA() {
+            var s = document.createElement('script');
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HE0LW0NQN3';
+            s.async = true;
+            document.head.appendChild(s);
+            s.onload = function() {
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-HE0LW0NQN3');
+            };
+        }
+        if (localStorage.getItem('cookieConsent') === 'true') {
+            loadGA();
+        } else {
+            document.getElementById('cookieConsent').style.display = 'flex';
+        }
+    </script>
 </body>
 </html>
