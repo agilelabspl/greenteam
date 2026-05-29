@@ -389,6 +389,28 @@
             color: var(--primary); font-weight: 600; text-decoration: none; transition: gap 0.3s ease;
         }
         .product-cta:hover { gap: 1rem; }
+        .accessory-promo {
+            display: flex; flex-direction: column; color: white; text-decoration: none;
+            background: var(--secondary); min-height: 100%;
+        }
+        .accessory-promo .product-image {
+            background: linear-gradient(135deg, rgba(6,78,59,0.15), rgba(22,163,74,0.2));
+        }
+        .accessory-promo .product-image::after {
+            opacity: 0.45;
+            background: linear-gradient(180deg, rgba(6,78,59,0.05) 0%, rgba(6,78,59,0.85) 100%);
+        }
+        .accessory-promo:hover .product-image::after { opacity: 0.55; }
+        .accessory-promo .product-content { position: relative; background: var(--secondary); }
+        .accessory-count {
+            display: inline-flex; align-items: baseline; gap: 0.4rem;
+            color: var(--accent); font-weight: 800; margin-bottom: 0.8rem;
+        }
+        .accessory-count strong { font-size: 2.5rem; line-height: 1; }
+        .accessory-count span { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; }
+        .accessory-promo .product-title { color: white; }
+        .accessory-promo .product-description { color: rgba(255,255,255,0.82); }
+        .accessory-promo .product-cta { color: white; }
         .subsection-header { margin-bottom: 2rem; margin-top: 3rem; }
         .subsection-header:first-child { margin-top: 0; }
         #maszyny { padding-top: 3rem; }
@@ -591,22 +613,17 @@
                     </div>
                 </div>
 
-                <div class="product-card">
+                <a class="product-card accessory-promo" href="przystawki-sportchamp.html">
                     <div class="product-image">
-                        <img src="img/sportchampsc2bl.webp" alt="SMG SportChamp SC2BL/E, maszyna do hokeja na trawie i sztucznych nawierzchni">
+                        <img src="img/sportchamp-przystawka-19.jpg" alt="Odśnieżarka jako przystawka do maszyn SportChamp">
                     </div>
                     <div class="product-content">
-                        <h3 class="product-title">SportChamp SC2BL/E</h3>
-                        <p class="product-description">Dedykowana do sztucznej trawy hokejowej. Szczotki boczne do narożników i band, turbinowy napęd ssący. Czyszczenie boiska hokejowego w niecałą godzinę.</p>
-                        <div class="product-features">
-                            <span class="feature-tag">16,9 kW benzyna</span>
-                            <span class="feature-tag">620 kg</span>
-                            <span class="feature-tag">950–1200 mm</span>
-                            <span class="feature-tag">do 10 km/h</span>
-                        </div>
-                        <a href="index.html#kontakt" class="product-cta">Zapytaj o cenę &rarr;</a>
+                        <div class="accessory-count"><strong>24</strong><span>przystawki</span></div>
+                        <h3 class="product-title">Osprzęt SportChamp</h3>
+                        <p class="product-description">Dobierz przystawki do czyszczenia, szczotkowania, dekompakcji, rozsiewania wypełnienia, oprysku, odśnieżania i prac sezonowych.</p>
+                        <span class="product-cta">Zobacz wszystkie &rarr;</span>
                     </div>
-                </div>
+                </a>
             </div>
 
             <!-- TURFBOY, ZGRZEBŁO I ZAMIATARKA -->
@@ -1022,6 +1039,7 @@
                 <h4>Maszyny</h4>
                 <ul>
                     <li><a href="#sportchamp">SportChamp</a></li>
+                    <li><a href="przystawki-sportchamp.html">Przystawki SportChamp</a></li>
                     <li><a href="#turfboy">TurfBoy</a></li>
                     <li><a href="#caremax">CareMax</a></li>
                     <li><a href="index.html#produkty">Kosiarki</a></li>
